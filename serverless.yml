@@ -29,3 +29,10 @@ functions:
       - http:
           method: get
           path: hello
+  generate_receipt:
+    handler: src/handler.generate_receipt
+    events:
+      - http:
+          method: post
+          path: receipt
+          cors: true
