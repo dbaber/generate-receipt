@@ -19,7 +19,10 @@ export const hello : Handler = (event: APIGatewayEvent, context: Context, cb: Ca
 
 export const generate_receipt : Handler = (event: APIGatewayEvent, _context: Context, cb: Callback) => {
   try{
+    //console.log("Handled event:", JSON.stringify(event));
+    //console.log("Event body:", JSON.stringify(JSON.parse(event.body)));
     const items: CartDataItem[] = JSON.parse(event.body);
+  
     let cart: Cart = new Cart();
     cart.add_items(items);
     
@@ -36,7 +39,10 @@ export const generate_receipt : Handler = (event: APIGatewayEvent, _context: Con
     console.error(err);
     cb(null, {
       statusCode: 500,
-      body: JSON.stringify({ error: err }),
+      body: JSON.stringify({
+        error: err.toString(),
+        full_error: err.stack,
+      }),
     });
   }
 }
