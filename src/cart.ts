@@ -1,6 +1,7 @@
 // cart.ts
 
 import { Catalog, Product, ProductCategory } from './catalog';
+import { ReceiptData, ReceiptItemData } from './receipt';
 
 export interface CartDataItem {
     quantity: number;
@@ -77,7 +78,37 @@ export class Cart {
         return this._items;
     }
 
-    generate_receipt(): any {
-        // TODO
+    generate_receipt(): ReceiptData {
+        let receipt_items: Array<ReceiptItemData> = new Array();
+        let sales_tax: number = 0;
+        let total: number = 0;
+
+        for (let item of this._items) {
+            let r: ReceiptItemData = {
+                quantity: item.quantity,
+                description: item.product.description,
+                amount: item.amount,
+                sales_tax: item.sales_tax,
+                import_duty: item.import_duty,
+                total: item.total
+            };
+
+            receipt_items.push(r);
+            sales_tax += ( (r.sales_tax as number) + (r.import_duty as number) );
+            total += r.total as number;
+        }
+
+        return {
+            items: receipt_items.map(item => ({
+                quantity: item.quantity,
+                description: item.description,
+                amount: (item.amount as number).toFixed(2),
+                sales_tax: (item.sales_tax as number).toFixed(2),
+                import_duty: (item.import_duty as number).toFixed(2),
+                total: (item.total as number).toFixed(2)
+            })),
+            sales_tax: sales_tax.toFixed(2),
+            total: total.toFixed(2),
+        };
     }
 }

@@ -1,7 +1,8 @@
 // handler.ts
 
 import { APIGatewayEvent, Context, Handler, Callback } from 'aws-lambda';
-import { CartDataItem, Cart, CartItem } from './cart';
+import { CartDataItem, Cart } from './cart';
+import { ReceiptData } from './receipt';
 
 export const hello : Handler = (event: APIGatewayEvent, context: Context, cb: Callback) => {
   const response = {
@@ -21,14 +22,12 @@ export const generate_receipt : Handler = (event: APIGatewayEvent, _context: Con
     const items: CartDataItem[] = JSON.parse(event.body);
     let cart: Cart = new Cart();
     cart.add_items(items);
-    cart.generate_receipt();
-    let cart_items: CartItem[] = cart.get_items();
+    
+    const receipt: ReceiptData = cart.generate_receipt();
 
-    //console.log("Received event:", JSON.stringify(event, null, 2));
     const response = {
       statusCode: 200,
-      //body: JSON.stringify({parsed_body: JSON.parse(event.body)}),
-      body: JSON.stringify(cart_items),
+      body: JSON.stringify(receipt),
     };
   
     cb(null, response);

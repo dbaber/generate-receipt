@@ -2,7 +2,6 @@
 
 export enum ProductCategory { Candy = "CANDY", Popcorn = "POPCORN", Coffee = "COFFEE", Other = "OTHER" };
 
-// TODO: Make this an interface? Not sure I even need this....
 // XXX: Using floating point numbers to do currency math is not the greatest idea
 export class Product {
     product_id: number;

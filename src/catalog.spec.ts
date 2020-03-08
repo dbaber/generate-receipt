@@ -11,11 +11,7 @@ describe("Catalog", () => {
             let c2: Catalog = Catalog.getInstance();
             expect(c1).to.equal(c2);
         });
-    });
-});
 
-describe("Catalog", () => {
-    describe("#getProduct()", () => {
         it("should throw an error when given a bad product_id", () => {
             let c: Catalog = Catalog.getInstance();
             expect(() => c.getProduct(-1).should.throw("Product with product_id -1 not found."));
