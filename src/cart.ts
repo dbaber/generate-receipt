@@ -28,7 +28,7 @@ export class CartItem {
     apply_basic_sales_tax () {
         // If we don't have candy, popcorn, or coffee then apply the basic sales tax
         if ( ! [ProductCategory.Candy, ProductCategory.Coffee, ProductCategory.Popcorn].includes(this.product.category) ) {
-            this.sales_tax += this.amount * 0.10; // TODO: Make this some kind of class member constant
+            this.sales_tax += this.amount * 0.10; // TODO: Make this some kind of class member constant?
             this.sales_tax = this._round_up_tax(this.sales_tax);
             this._update_total();
         }
@@ -36,15 +36,14 @@ export class CartItem {
 
     apply_import_duty() {
         if (this.product.imported){
-            this.import_duty += this.amount * 0.05; // TODO: Make this some kind of class member constant
+            this.import_duty += this.amount * 0.05; // TODO: Make this some kind of class member constant?
             this.import_duty = this._round_up_tax(this.import_duty);
             this._update_total();
         }
     }
 
-    // XXX: Could make this more flexible
+    // XXX: Could make this more flexible and use some params/member to dictate rounding
     private _round_up_tax(amount: number) {
-       // return (Math.ceil(amount *20)/20).toFixed(2);
        return (Math.ceil(amount * 20)/20);
     }
 
@@ -78,6 +77,7 @@ export class Cart {
         return this._items;
     }
 
+    // TODO: move this to a Receipt class?
     generate_receipt(): ReceiptData {
         let receipt_items: Array<ReceiptItemData> = new Array();
         let sales_tax: number = 0;
