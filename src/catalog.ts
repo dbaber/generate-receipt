@@ -53,4 +53,8 @@ export class Catalog {
             throw Error(`Product with product_id '${product_id}' not found.`);
         }   
     }
+
+    addProduct(product: Product) {
+        this.products.push(product);
+    }
 }

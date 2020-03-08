@@ -24,9 +24,9 @@ export const generate_receipt : Handler = (event: APIGatewayEvent, _context: Con
     const items: CartDataItem[] = JSON.parse(event.body);
   
     let cart: Cart = new Cart();
-    cart.add_items(items);
+    cart.addItems(items);
     
-    const receipt: ReceiptData = cart.generate_receipt();
+    const receipt: ReceiptData = cart.generateReceipt();
 
     const response = {
       statusCode: 200,

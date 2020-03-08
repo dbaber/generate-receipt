@@ -22,32 +22,32 @@ export class CartItem {
         this.product = product;
 
         this.amount += this.quantity * this.product.price;
-        this._update_total();
+        this._updateTotal();
     }
 
-    apply_basic_sales_tax () {
+    applyBasicSalesTax () {
         // If we don't have candy, popcorn, or coffee then apply the basic sales tax
         if ( ! [ProductCategory.Candy, ProductCategory.Coffee, ProductCategory.Popcorn].includes(this.product.category) ) {
             this.sales_tax += this.amount * 0.10; // TODO: Make this some kind of class member constant?
-            this.sales_tax = this._round_up_tax(this.sales_tax);
-            this._update_total();
+            this.sales_tax = this._roundUpTax(this.sales_tax);
+            this._updateTotal();
         }
     }
 
-    apply_import_duty() {
+    applyImportDuty() {
         if (this.product.imported){
             this.import_duty += this.amount * 0.05; // TODO: Make this some kind of class member constant?
-            this.import_duty = this._round_up_tax(this.import_duty);
-            this._update_total();
+            this.import_duty = this._roundUpTax(this.import_duty);
+            this._updateTotal();
         }
     }
 
     // XXX: Could make this more flexible and use some params/member to dictate rounding
-    private _round_up_tax(amount: number) {
+    private _roundUpTax(amount: number) {
        return (Math.ceil(amount * 20)/20);
     }
 
-    private _update_total() {
+    private _updateTotal() {
         this.total = this.amount + this.sales_tax + this.import_duty;
     }
 }
@@ -58,27 +58,27 @@ export class Cart {
     total_sales_tax: number = 0;
     total: number = 0;
 
-    add_items(items: CartDataItem[]) {
+    addItems(items: CartDataItem[]) {
         //console.log("Calling Cart#add_items() ", JSON.stringify(items));
         
         for (let item of items ) {
             let product: Product = Cart.catalog.getProduct(item.product_id);
             let cart_item: CartItem = new CartItem(item.quantity, product);
 
-            cart_item.apply_basic_sales_tax();
-            cart_item.apply_import_duty();
+            cart_item.applyBasicSalesTax();
+            cart_item.applyImportDuty();
 
             this._items.push(cart_item);        
         }
         //console.log("Added cart items:", JSON.stringify(this._items));
     }
 
-    get_items() {
+    getItems() {
         return this._items;
     }
 
     // TODO: move this to a Receipt class?
-    generate_receipt(): ReceiptData {
+    generateReceipt(): ReceiptData {
         let receipt_items: Array<ReceiptItemData> = new Array();
         let sales_tax: number = 0;
         let total: number = 0;
