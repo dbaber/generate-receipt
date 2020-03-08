@@ -17,13 +17,13 @@ npm install -g serverless
 
 ### Install Project Dependencies
 
-To install the project dependencies including Typescript and other simply run the follow `npm` command.
+To install the project dependencies including Typescript and other simply run the follow `npm` command:
 
 ```
 npm install
 ```
 
-This may output some warnings like the following (dpending onyour platform), but they can be ignored:
+This may output some warnings like the following (depending on your platform), but they can be ignored:
 ```
   SOLINK_MODULE(target) Release/.node
 ld: warning: directory not found for option '-L/usr/local/opt/node@12/lib:'
