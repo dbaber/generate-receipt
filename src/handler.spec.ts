@@ -2,7 +2,8 @@
 import 'mocha';
 import { expect } from 'chai';
 import 'chai/register-should';
-import { hello, generate_receipt } from './handler';
+//import { hello, generate_receipt } from './handler';
+import { hello  } from './handler';
 
 describe("handler", () => {
   describe("hello", () => {
@@ -15,7 +16,7 @@ describe("handler", () => {
   });
 });
 
-describe("handler", () => {
+/*describe("handler", () => {
   describe("generate_receipt", () => {
     it("should return Serverless boilerplate message", () => {
       generate_receipt(null, null, (error : Error, result : any) => {
@@ -24,4 +25,4 @@ describe("handler", () => {
       })
     });
   });
-});
+});*/
