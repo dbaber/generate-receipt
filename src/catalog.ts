@@ -50,7 +50,7 @@ export class Catalog {
         if (product) {
             return product;
         } else {
-            throw Error(`Product with product_id ${product_id} not found.`);
+            throw Error(`Product with product_id '${product_id}' not found.`);
         }   
     }
 }

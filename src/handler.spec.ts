@@ -49,12 +49,23 @@ describe("handler", () => {
 
 describe("handler", () => {
   describe("generate_receipt", () => {
+    it("should return a not found error with an invalid product_id", () => {
+      const event: APIGatewayProxyEvent = mock_event( JSON.stringify([ { product_id: -1, quantity: 1 }]));
+
+      generate_receipt(event, null, (error : Error, result : any) => {
+        expect(error).to.be.null;;
+        result.statusCode.should.equal(500);
+        JSON.parse(result.body).error.should.equal("Error: Product with product_id '-1' not found.")
+      })
+    });
+
     it("should return a proper receipt for Shopping Basket 1", () => {
       const event: APIGatewayProxyEvent = mock_event( JSON.stringify(
         [ { product_id: 1, quantity: 1 }, { product_id: 2, quantity: 1 }, { product_id: 3, quantity: 1 }]));
 
       generate_receipt(event, null, (error : Error, result : any) => {
         expect(error).to.be.null;
+        result.statusCode.should.equal(200);
         result.body.should.equal( JSON.stringify({
           items: [
             {
@@ -94,6 +105,7 @@ describe("handler", () => {
 
       generate_receipt(event, null, (error : Error, result : any) => {
         expect(error).to.be.null;
+        result.statusCode.should.equal(200);
         result.body.should.equal( JSON.stringify({
           items: [
             {
@@ -126,6 +138,7 @@ describe("handler", () => {
 
       generate_receipt(event, null, (error : Error, result : any) => {
         expect(error).to.be.null;
+        result.statusCode.should.equal(200);
         result.body.should.equal( JSON.stringify({
           items: [
             {
