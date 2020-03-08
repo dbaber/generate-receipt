@@ -3,16 +3,15 @@
 export enum ProductCategory { Candy = "CANDY", Popcorn = "POPCORN", Coffee = "COFFEE", Other = "OTHER" };
 
 // TODO: Make this an interface? Not sure I even need this....
+// XXX: Using floating point numbers to do currency math is not the greatest idea
 export class Product {
     product_id: number;
     category: ProductCategory;
     description: string;
     price: number;
     imported: boolean = false;
-    sales_tax?: number = 0; // XXX: Not sure about these? Probably put then on a cart item
-    import_duty?: number = 0; // XXX: Not sure about these? Probably put them on a cart item
 
-    constructor(product_id: number, category: ProductCategory, description: string, price: number, imported: boolean = false) {
+    constructor(product_id: number, category: ProductCategory, description: string, price: number, imported: boolean) {
         this.product_id = product_id;
         this.category = category;
         this.description = description;
