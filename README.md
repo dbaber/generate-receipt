@@ -17,7 +17,7 @@ npm install -g serverless
 
 ### Install Project Dependencies
 
-To install the project dependencies including Typescript and others simply run the follow `npm` command:
+To install the project dependencies including Typescript and others simply run the following `npm` command:
 
 ```
 npm install
