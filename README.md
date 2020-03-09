@@ -5,7 +5,7 @@ Serverless shopping cart receipt generator service using [NodeJS](https://nodejs
 
 ## Installation
 
-As of the last update on this repo this AWS lambda requires [NodeJS](https://nodejs.org) 12.16.1 LTS and the corresponding npm 6.13.4 version that accompanies it. Once you have NodeJS and npm installed for your platform, we can then move onto installing the npm modules dependencies. You can learn more about installing NodeJS and npm from the main [NodeJS website](https://nodejs.org) which typically features a download link for your platform for both LTS and Current versions.
+As of the last update on this repo this AWS lambda requires [NodeJS](https://nodejs.org) 12.16.1 LTS and the corresponding npm 6.13.4 version that accompanies it. Once you have NodeJS and npm installed for your platform, we can then move onto installing the npm module dependencies. You can learn more about installing NodeJS and npm from the main [NodeJS website](https://nodejs.org) which typically features a download link for your platform for both LTS and Current versions.
 
 ### Intalling the Serverless framework
 
