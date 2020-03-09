@@ -36,7 +36,7 @@ export const generate_receipt : Handler = (event: APIGatewayEvent, _context: Con
     cb(null, response);
   }
   catch(err){
-    console.error(err);
+    //console.error(err);
     cb(null, {
       statusCode: 500,
       body: JSON.stringify({
